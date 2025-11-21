@@ -1,0 +1,2133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WCC Doubles 2025 - DC Tournaments</title>
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            font-size: 13px;
+            line-height: 1.4;
+            color: #1a1a1a;
+            background-color: #fafafa;
+        }
+        
+        .header {
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 16px 32px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a1a1a;
+            text-decoration: none;
+            position: absolute;
+            left: 0;
+        }
+        
+        .nav {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+        
+        .updated {
+            position: absolute;
+            right: 0;
+            font-size: 11px;
+            color: #999;
+        }
+        
+        .nav a {
+            color: #666;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 6px 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        
+        .nav a:hover {
+            color: #1a1a1a;
+        }
+        
+        .nav a.active {
+            color: #1a1a1a;
+            border-bottom-color: #4a90e2;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px 32px;
+        }
+        
+        .page-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .page-description {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+        
+        .table-container {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        thead {
+            background: #f5f5f5;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        th {
+            text-align: left;
+            padding: 4px 8px;
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #666;
+        }
+        
+        td {
+            padding: 4px 8px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 11px;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .rank-cell {
+            font-weight: 600;
+            color: #333;
+            width: 60px;
+        }
+        
+        .player-cell {
+            font-weight: 500;
+            color: #1a1a1a;
+            font-size: 11px;
+        }
+        
+        .player-link {
+            color: #4a90e2;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 13px;
+        }
+        
+        .player-link:hover {
+            text-decoration: underline;
+        }
+        
+        .number-cell {
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+        }
+        
+        /* Wins box styling - green scale */
+        .wins-box {
+            display: inline-block;
+            color: white;
+            padding: 6px 10px;
+            border-radius: 3px;
+            font-weight: 600;
+            font-size: 11px;
+            min-width: 28px;
+            text-align: center;
+        }
+        
+        /* Tour badge styling */
+        .tour-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            margin: 0 4px;
+            text-transform: uppercase;
+            color: white;
+        }
+        
+        .tour-badge.nca {
+            background-color: #ff6b6b;
+        }
+        
+        .tour-badge.uk {
+            background-color: #4a90e2;
+        }
+        
+        .tour-badge.other {
+            background-color: #95a5a6;
+        }
+        
+        /* Points bar styling - lighter blue/teal */
+        .points-bar-cell {
+            text-align: left;
+            padding-left: 8px !important;
+        }
+        
+        .points-bar-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+        }
+        
+        .points-value {
+            font-weight: 600;
+            font-size: 11px;
+            min-width: 45px;
+            text-align: left;
+            z-index: 2;
+        }
+        
+        .points-bar {
+            background: #7db3d4;
+            height: 20px;
+            position: absolute;
+            left: 50px;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        /* Season and Group filters */
+        .filter-controls {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+        
+        .filter-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .filter-label {
+            font-weight: 600;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        select.season-selector {
+            padding: 6px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 11px;
+            background: white;
+            cursor: pointer;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .filter-btn {
+            padding: 8px 18px;
+            border: 1px solid #d0d0d0;
+            background: white;
+            border-radius: 4px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .filter-btn:hover {
+            background: #f5f5f5;
+        }
+        
+        .filter-btn.active {
+            background: #4a90e2;
+            color: white;
+            border-color: #4a90e2;
+        }
+        
+        .top-3 {
+            background-color: #fffbf0;
+        }
+        
+        .top-3 .rank-cell {
+            color: #d97706;
+        }
+        
+        .sparkline {
+            vertical-align: middle;
+        }
+        
+        .trend-cell {
+            text-align: center;
+            padding: 8px 12px;
+        }
+        
+        .stats-row {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 16px;
+            font-size: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .stat-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-top: 2px;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .search-box {
+            flex: 0 0 300px;
+            padding: 8px 12px;
+            border: 1px solid #d0d0d0;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        
+        .search-box:focus {
+            outline: none;
+            border-color: #4a90e2;
+        }
+        
+        .tab-nav {
+            display: flex;
+            gap: 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .tab-button {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            font-size: 13px;
+            font-weight: 500;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .tab-button:hover {
+            color: #1a1a1a;
+        }
+        
+        .tab-button.active {
+            color: #1a1a1a;
+            border-bottom-color: #4a90e2;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+
+        
+        .tour-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-right: 6px;
+            text-transform: uppercase;
+        }
+        
+        .tour-badge.nca {
+            background-color: #ff6b6b;
+            color: white;
+        }
+        
+        .tour-badge.uk {
+            background-color: #4a90e2;
+            color: white;
+        }
+        
+        .tournament-header {
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        
+        .tournament-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .tournament-meta {
+            display: flex;
+            gap: 32px;
+            margin-top: 16px;
+            font-size: 14px;
+        }
+        
+        .tournament-meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .meta-label {
+            color: #666;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        
+        .meta-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+        .pve-positive {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .pve-negative {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .chart-container {
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            margin-top: 24px;
+        }
+        
+        canvas {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="header">
+        <div class="header-content">
+            <a href="/index.html" class="logo">Data Crokinole</a>
+            <nav class="nav">
+                <a href="/dc_rankings.html" class="">DC Rankings</a>
+                <a href="/dc_points.html" class="">DC Points</a>
+                <a href="/dc_tournaments.html" class="active">DC Tournaments</a>
+            </nav>
+            
+        </div>
+    </div>
+
+    
+    <div class="container">
+        <div class="tournament-header">
+            <div class="tournament-title">WCC Doubles 2025</div>
+            <div class="tournament-meta">
+                <div class="tournament-meta-item">
+                    <div class="meta-label">Season</div>
+                    <div class="meta-value">15</div>
+                </div>
+                <div class="tournament-meta-item">
+                    <div class="meta-label">Format</div>
+                    <div class="meta-value"><span class="tour-badge nca">NCA</span> DOUBLES</div>
+                </div>
+                <div class="tournament-meta-item">
+                    <div class="meta-label">Field Strength (FSI)</div>
+                    <div class="meta-value">1.42</div>
+                </div>
+                <div class="tournament-meta-item">
+                    <div class="meta-label">Field Size</div>
+                    <div class="meta-value">68</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Place</th>
+                        <th style="text-align: left;">Player</th>
+                        <th>FSI</th>
+                        <th>Raw Points</th>
+                        <th>Base Points</th>
+                        <th>Expected Rank</th>
+                        <th>PVE</th>
+                        <th>Bonus</th>
+                        <th>Total Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7458" class="player-link">Andrew Hutchinson</a></td>
+                        <td>1.42</td>
+                        <td>60.00</td>
+                        <td>85.11</td>
+                        <td>2.0</td>
+                        <td class="pve-positive">1.00</td>
+                        <td>0.00</td>
+                        <td><strong>85.11</strong></td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7461" class="player-link">Jeremy Tracey</a></td>
+                        <td>1.42</td>
+                        <td>60.00</td>
+                        <td>85.11</td>
+                        <td>2.0</td>
+                        <td class="pve-positive">1.00</td>
+                        <td>0.00</td>
+                        <td><strong>85.11</strong></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7469" class="player-link">Fred Slater</a></td>
+                        <td>1.42</td>
+                        <td>58.22</td>
+                        <td>82.59</td>
+                        <td>4.0</td>
+                        <td class="pve-positive">2.00</td>
+                        <td>0.00</td>
+                        <td><strong>82.59</strong></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7490" class="player-link">Justin Slater</a></td>
+                        <td>1.42</td>
+                        <td>58.22</td>
+                        <td>82.59</td>
+                        <td>4.0</td>
+                        <td class="pve-positive">2.00</td>
+                        <td>0.00</td>
+                        <td><strong>82.59</strong></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8216" class="player-link">Kyle Grasby</a></td>
+                        <td>1.42</td>
+                        <td>56.47</td>
+                        <td>80.11</td>
+                        <td>38.0</td>
+                        <td class="pve-positive">35.00</td>
+                        <td>0.00</td>
+                        <td><strong>80.11</strong></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8217" class="player-link">Trevor Grasby</a></td>
+                        <td>1.42</td>
+                        <td>56.47</td>
+                        <td>80.11</td>
+                        <td>38.0</td>
+                        <td class="pve-positive">35.00</td>
+                        <td>0.00</td>
+                        <td><strong>80.11</strong></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8251" class="player-link">Darin van Gammeren</a></td>
+                        <td>1.42</td>
+                        <td>54.75</td>
+                        <td>77.66</td>
+                        <td>23.0</td>
+                        <td class="pve-positive">19.00</td>
+                        <td>0.00</td>
+                        <td><strong>77.66</strong></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7794" class="player-link">Brandyn Osborne</a></td>
+                        <td>1.42</td>
+                        <td>54.75</td>
+                        <td>77.66</td>
+                        <td>23.0</td>
+                        <td class="pve-positive">19.00</td>
+                        <td>0.00</td>
+                        <td><strong>77.66</strong></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7597" class="player-link">Marc Ponzio</a></td>
+                        <td>1.42</td>
+                        <td>53.05</td>
+                        <td>75.25</td>
+                        <td>9.0</td>
+                        <td class="pve-positive">4.00</td>
+                        <td>0.00</td>
+                        <td><strong>75.25</strong></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7899" class="player-link">Jamie Harter</a></td>
+                        <td>1.42</td>
+                        <td>53.05</td>
+                        <td>75.25</td>
+                        <td>9.0</td>
+                        <td class="pve-positive">4.00</td>
+                        <td>0.00</td>
+                        <td><strong>75.25</strong></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7463" class="player-link">Ron Langill</a></td>
+                        <td>1.42</td>
+                        <td>51.38</td>
+                        <td>72.88</td>
+                        <td>5.0</td>
+                        <td class="pve-negative">-1.00</td>
+                        <td>0.00</td>
+                        <td><strong>72.88</strong></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7491" class="player-link">Josh Carrafiello</a></td>
+                        <td>1.42</td>
+                        <td>51.38</td>
+                        <td>72.88</td>
+                        <td>5.0</td>
+                        <td class="pve-negative">-1.00</td>
+                        <td>0.00</td>
+                        <td><strong>72.88</strong></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7489" class="player-link">Connor Reinman</a></td>
+                        <td>1.42</td>
+                        <td>49.73</td>
+                        <td>70.55</td>
+                        <td>1.0</td>
+                        <td class="pve-negative">-6.00</td>
+                        <td>0.00</td>
+                        <td><strong>70.55</strong></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7572" class="player-link">Jon Conrad</a></td>
+                        <td>1.42</td>
+                        <td>49.73</td>
+                        <td>70.55</td>
+                        <td>1.0</td>
+                        <td class="pve-negative">-6.00</td>
+                        <td>0.00</td>
+                        <td><strong>70.55</strong></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7460" class="player-link">Ray Beierling</a></td>
+                        <td>1.42</td>
+                        <td>48.12</td>
+                        <td>68.26</td>
+                        <td>3.0</td>
+                        <td class="pve-negative">-5.00</td>
+                        <td>0.00</td>
+                        <td><strong>68.26</strong></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7462" class="player-link">Jason Beierling</a></td>
+                        <td>1.42</td>
+                        <td>48.12</td>
+                        <td>68.26</td>
+                        <td>3.0</td>
+                        <td class="pve-negative">-5.00</td>
+                        <td>0.00</td>
+                        <td><strong>68.26</strong></td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8252" class="player-link">Grant Flick</a></td>
+                        <td>1.42</td>
+                        <td>46.53</td>
+                        <td>66.00</td>
+                        <td>24.0</td>
+                        <td class="pve-positive">15.00</td>
+                        <td>0.00</td>
+                        <td><strong>66.00</strong></td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7691" class="player-link">Ryan Buhr</a></td>
+                        <td>1.42</td>
+                        <td>46.53</td>
+                        <td>66.00</td>
+                        <td>24.0</td>
+                        <td class="pve-positive">15.00</td>
+                        <td>0.00</td>
+                        <td><strong>66.00</strong></td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7522" class="player-link">Rex Johnston</a></td>
+                        <td>1.42</td>
+                        <td>44.96</td>
+                        <td>63.78</td>
+                        <td>15.0</td>
+                        <td class="pve-positive">5.00</td>
+                        <td>0.00</td>
+                        <td><strong>63.78</strong></td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7523" class="player-link">Tom Johnston</a></td>
+                        <td>1.42</td>
+                        <td>44.96</td>
+                        <td>63.78</td>
+                        <td>15.0</td>
+                        <td class="pve-positive">5.00</td>
+                        <td>0.00</td>
+                        <td><strong>63.78</strong></td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7475" class="player-link">Kris Flossbach</a></td>
+                        <td>1.42</td>
+                        <td>43.43</td>
+                        <td>61.60</td>
+                        <td>10.0</td>
+                        <td class="pve-negative">-1.00</td>
+                        <td>0.00</td>
+                        <td><strong>61.60</strong></td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7494" class="player-link">Travis Keener</a></td>
+                        <td>1.42</td>
+                        <td>43.43</td>
+                        <td>61.60</td>
+                        <td>10.0</td>
+                        <td class="pve-negative">-1.00</td>
+                        <td>0.00</td>
+                        <td><strong>61.60</strong></td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7492" class="player-link">Reid Tracey</a></td>
+                        <td>1.42</td>
+                        <td>41.92</td>
+                        <td>59.46</td>
+                        <td>6.0</td>
+                        <td class="pve-negative">-6.00</td>
+                        <td>0.00</td>
+                        <td><strong>59.46</strong></td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7496" class="player-link">Nolan Tracey</a></td>
+                        <td>1.42</td>
+                        <td>41.92</td>
+                        <td>59.46</td>
+                        <td>6.0</td>
+                        <td class="pve-negative">-6.00</td>
+                        <td>0.00</td>
+                        <td><strong>59.46</strong></td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7515" class="player-link">Kevin Bechtel</a></td>
+                        <td>1.42</td>
+                        <td>40.43</td>
+                        <td>57.36</td>
+                        <td>26.0</td>
+                        <td class="pve-positive">13.00</td>
+                        <td>0.00</td>
+                        <td><strong>57.36</strong></td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7508" class="player-link">Raymond Kappes</a></td>
+                        <td>1.42</td>
+                        <td>40.43</td>
+                        <td>57.36</td>
+                        <td>26.0</td>
+                        <td class="pve-positive">13.00</td>
+                        <td>0.00</td>
+                        <td><strong>57.36</strong></td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7812" class="player-link">Abijah Jongsma</a></td>
+                        <td>1.42</td>
+                        <td>38.98</td>
+                        <td>55.29</td>
+                        <td>51.0</td>
+                        <td class="pve-positive">37.00</td>
+                        <td>0.00</td>
+                        <td><strong>55.29</strong></td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7813" class="player-link">Reuben Jongsma</a></td>
+                        <td>1.42</td>
+                        <td>38.98</td>
+                        <td>55.29</td>
+                        <td>51.0</td>
+                        <td class="pve-positive">37.00</td>
+                        <td>0.00</td>
+                        <td><strong>55.29</strong></td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7697" class="player-link">Linder Wendt</a></td>
+                        <td>1.42</td>
+                        <td>37.55</td>
+                        <td>53.26</td>
+                        <td>11.0</td>
+                        <td class="pve-negative">-4.00</td>
+                        <td>0.00</td>
+                        <td><strong>53.26</strong></td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7698" class="player-link">Patrick Ten Eyck</a></td>
+                        <td>1.42</td>
+                        <td>37.55</td>
+                        <td>53.26</td>
+                        <td>11.0</td>
+                        <td class="pve-negative">-4.00</td>
+                        <td>0.00</td>
+                        <td><strong>53.26</strong></td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7485" class="player-link">Oliver Ware</a></td>
+                        <td>1.42</td>
+                        <td>36.14</td>
+                        <td>51.27</td>
+                        <td>34.0</td>
+                        <td class="pve-positive">18.00</td>
+                        <td>0.00</td>
+                        <td><strong>51.27</strong></td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7471" class="player-link">Philip Ware</a></td>
+                        <td>1.42</td>
+                        <td>36.14</td>
+                        <td>51.27</td>
+                        <td>34.0</td>
+                        <td class="pve-positive">18.00</td>
+                        <td>0.00</td>
+                        <td><strong>51.27</strong></td>
+                    </tr>
+                    <tr>
+                        <td>17</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7528" class="player-link">Mark Boot</a></td>
+                        <td>1.42</td>
+                        <td>34.76</td>
+                        <td>49.32</td>
+                        <td>27.0</td>
+                        <td class="pve-positive">10.00</td>
+                        <td>0.00</td>
+                        <td><strong>49.32</strong></td>
+                    </tr>
+                    <tr>
+                        <td>17</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7464" class="player-link">Simon Dowrick</a></td>
+                        <td>1.42</td>
+                        <td>34.76</td>
+                        <td>49.32</td>
+                        <td>27.0</td>
+                        <td class="pve-positive">10.00</td>
+                        <td>0.00</td>
+                        <td><strong>49.32</strong></td>
+                    </tr>
+                    <tr>
+                        <td>18</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7472" class="player-link">Clare Kuepfer</a></td>
+                        <td>1.42</td>
+                        <td>33.42</td>
+                        <td>47.40</td>
+                        <td>16.0</td>
+                        <td class="pve-negative">-2.00</td>
+                        <td>0.00</td>
+                        <td><strong>47.40</strong></td>
+                    </tr>
+                    <tr>
+                        <td>18</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7459" class="player-link">Nathan Walsh</a></td>
+                        <td>1.42</td>
+                        <td>33.42</td>
+                        <td>47.40</td>
+                        <td>16.0</td>
+                        <td class="pve-negative">-2.00</td>
+                        <td>0.00</td>
+                        <td><strong>47.40</strong></td>
+                    </tr>
+                    <tr>
+                        <td>19</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7504" class="player-link">James Medway</a></td>
+                        <td>1.42</td>
+                        <td>32.09</td>
+                        <td>45.52</td>
+                        <td>19.0</td>
+                        <td class="">0.00</td>
+                        <td>0.00</td>
+                        <td><strong>45.52</strong></td>
+                    </tr>
+                    <tr>
+                        <td>19</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7517" class="player-link">Matthew Knapp</a></td>
+                        <td>1.42</td>
+                        <td>32.09</td>
+                        <td>45.52</td>
+                        <td>19.0</td>
+                        <td class="">0.00</td>
+                        <td>0.00</td>
+                        <td><strong>45.52</strong></td>
+                    </tr>
+                    <tr>
+                        <td>20</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8253" class="player-link">Nick Fortino</a></td>
+                        <td>1.42</td>
+                        <td>30.80</td>
+                        <td>43.68</td>
+                        <td>8.0</td>
+                        <td class="pve-negative">-12.00</td>
+                        <td>0.00</td>
+                        <td><strong>43.68</strong></td>
+                    </tr>
+                    <tr>
+                        <td>20</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7885" class="player-link">Devon Fortino</a></td>
+                        <td>1.42</td>
+                        <td>30.80</td>
+                        <td>43.68</td>
+                        <td>8.0</td>
+                        <td class="pve-negative">-12.00</td>
+                        <td>0.00</td>
+                        <td><strong>43.68</strong></td>
+                    </tr>
+                    <tr>
+                        <td>21</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8223" class="player-link">Randy Harris</a></td>
+                        <td>1.42</td>
+                        <td>29.53</td>
+                        <td>41.88</td>
+                        <td>37.0</td>
+                        <td class="pve-positive">16.00</td>
+                        <td>0.00</td>
+                        <td><strong>41.88</strong></td>
+                    </tr>
+                    <tr>
+                        <td>21</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7497" class="player-link">Dan Hepburn</a></td>
+                        <td>1.42</td>
+                        <td>29.53</td>
+                        <td>41.88</td>
+                        <td>37.0</td>
+                        <td class="pve-positive">16.00</td>
+                        <td>0.00</td>
+                        <td><strong>41.88</strong></td>
+                    </tr>
+                    <tr>
+                        <td>22</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7593" class="player-link">Mike McTague</a></td>
+                        <td>1.42</td>
+                        <td>28.28</td>
+                        <td>40.12</td>
+                        <td>18.0</td>
+                        <td class="pve-negative">-4.00</td>
+                        <td>0.00</td>
+                        <td><strong>40.12</strong></td>
+                    </tr>
+                    <tr>
+                        <td>22</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7514" class="player-link">Ehren Lewis</a></td>
+                        <td>1.42</td>
+                        <td>28.28</td>
+                        <td>40.12</td>
+                        <td>18.0</td>
+                        <td class="pve-negative">-4.00</td>
+                        <td>0.00</td>
+                        <td><strong>40.12</strong></td>
+                    </tr>
+                    <tr>
+                        <td>23</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7789" class="player-link">Helen Linda</a></td>
+                        <td>1.42</td>
+                        <td>27.07</td>
+                        <td>38.39</td>
+                        <td>33.0</td>
+                        <td class="pve-positive">10.00</td>
+                        <td>0.00</td>
+                        <td><strong>38.39</strong></td>
+                    </tr>
+                    <tr>
+                        <td>23</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7788" class="player-link">Brian McGarry</a></td>
+                        <td>1.42</td>
+                        <td>27.07</td>
+                        <td>38.39</td>
+                        <td>33.0</td>
+                        <td class="pve-positive">10.00</td>
+                        <td>0.00</td>
+                        <td><strong>38.39</strong></td>
+                    </tr>
+                    <tr>
+                        <td>24</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7498" class="player-link">Garret Tracey</a></td>
+                        <td>1.42</td>
+                        <td>25.88</td>
+                        <td>36.71</td>
+                        <td>30.0</td>
+                        <td class="pve-positive">6.00</td>
+                        <td>0.00</td>
+                        <td><strong>36.71</strong></td>
+                    </tr>
+                    <tr>
+                        <td>24</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7615" class="player-link">Michael Barth</a></td>
+                        <td>1.42</td>
+                        <td>25.88</td>
+                        <td>36.71</td>
+                        <td>30.0</td>
+                        <td class="pve-positive">6.00</td>
+                        <td>0.00</td>
+                        <td><strong>36.71</strong></td>
+                    </tr>
+                    <tr>
+                        <td>25</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7501" class="player-link">Roy Campbell</a></td>
+                        <td>1.42</td>
+                        <td>24.71</td>
+                        <td>35.06</td>
+                        <td>17.0</td>
+                        <td class="pve-negative">-8.00</td>
+                        <td>0.00</td>
+                        <td><strong>35.06</strong></td>
+                    </tr>
+                    <tr>
+                        <td>25</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7510" class="player-link">Chet Boehlke</a></td>
+                        <td>1.42</td>
+                        <td>24.71</td>
+                        <td>35.06</td>
+                        <td>17.0</td>
+                        <td class="pve-negative">-8.00</td>
+                        <td>0.00</td>
+                        <td><strong>35.06</strong></td>
+                    </tr>
+                    <tr>
+                        <td>26</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8254" class="player-link">Motoaki Takenouchi</a></td>
+                        <td>1.42</td>
+                        <td>23.58</td>
+                        <td>33.45</td>
+                        <td>20.0</td>
+                        <td class="pve-negative">-6.00</td>
+                        <td>0.00</td>
+                        <td><strong>33.45</strong></td>
+                    </tr>
+                    <tr>
+                        <td>26</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8232" class="player-link">Ryotaro Fukuda</a></td>
+                        <td>1.42</td>
+                        <td>23.58</td>
+                        <td>33.45</td>
+                        <td>20.0</td>
+                        <td class="pve-negative">-6.00</td>
+                        <td>0.00</td>
+                        <td><strong>33.45</strong></td>
+                    </tr>
+                    <tr>
+                        <td>27</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7706" class="player-link">Andrew Hartung</a></td>
+                        <td>1.42</td>
+                        <td>22.47</td>
+                        <td>31.87</td>
+                        <td>7.0</td>
+                        <td class="pve-negative">-20.00</td>
+                        <td>0.00</td>
+                        <td><strong>31.87</strong></td>
+                    </tr>
+                    <tr>
+                        <td>27</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7705" class="player-link">Bruce Hartung</a></td>
+                        <td>1.42</td>
+                        <td>22.47</td>
+                        <td>31.87</td>
+                        <td>7.0</td>
+                        <td class="pve-negative">-20.00</td>
+                        <td>0.00</td>
+                        <td><strong>31.87</strong></td>
+                    </tr>
+                    <tr>
+                        <td>28</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7782" class="player-link">Eric Mammen</a></td>
+                        <td>1.42</td>
+                        <td>21.39</td>
+                        <td>30.34</td>
+                        <td>29.0</td>
+                        <td class="pve-positive">1.00</td>
+                        <td>0.00</td>
+                        <td><strong>30.34</strong></td>
+                    </tr>
+                    <tr>
+                        <td>28</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8255" class="player-link">Mark Wilder</a></td>
+                        <td>1.42</td>
+                        <td>21.39</td>
+                        <td>30.34</td>
+                        <td>29.0</td>
+                        <td class="pve-positive">1.00</td>
+                        <td>0.00</td>
+                        <td><strong>30.34</strong></td>
+                    </tr>
+                    <tr>
+                        <td>29</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7506" class="player-link">Darren Carr</a></td>
+                        <td>1.42</td>
+                        <td>20.33</td>
+                        <td>28.84</td>
+                        <td>21.0</td>
+                        <td class="pve-negative">-8.00</td>
+                        <td>0.00</td>
+                        <td><strong>28.84</strong></td>
+                    </tr>
+                    <tr>
+                        <td>29</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7518" class="player-link">Gina Schick</a></td>
+                        <td>1.42</td>
+                        <td>20.33</td>
+                        <td>28.84</td>
+                        <td>21.0</td>
+                        <td class="pve-negative">-8.00</td>
+                        <td>0.00</td>
+                        <td><strong>28.84</strong></td>
+                    </tr>
+                    <tr>
+                        <td>30</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8257" class="player-link">Sander Brugman</a></td>
+                        <td>1.42</td>
+                        <td>19.30</td>
+                        <td>27.38</td>
+                        <td>14.0</td>
+                        <td class="pve-negative">-16.00</td>
+                        <td>0.00</td>
+                        <td><strong>27.38</strong></td>
+                    </tr>
+                    <tr>
+                        <td>30</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8256" class="player-link">Joert Edink</a></td>
+                        <td>1.42</td>
+                        <td>19.30</td>
+                        <td>27.38</td>
+                        <td>14.0</td>
+                        <td class="pve-negative">-16.00</td>
+                        <td>0.00</td>
+                        <td><strong>27.38</strong></td>
+                    </tr>
+                    <tr>
+                        <td>31</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7468" class="player-link">Peter Carter</a></td>
+                        <td>1.42</td>
+                        <td>18.30</td>
+                        <td>25.96</td>
+                        <td>22.0</td>
+                        <td class="pve-negative">-9.00</td>
+                        <td>0.00</td>
+                        <td><strong>25.96</strong></td>
+                    </tr>
+                    <tr>
+                        <td>31</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7507" class="player-link">Tyson Kuepfer</a></td>
+                        <td>1.42</td>
+                        <td>18.30</td>
+                        <td>25.96</td>
+                        <td>22.0</td>
+                        <td class="pve-negative">-9.00</td>
+                        <td>0.00</td>
+                        <td><strong>25.96</strong></td>
+                    </tr>
+                    <tr>
+                        <td>32</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7709" class="player-link">Andrew Webster</a></td>
+                        <td>1.42</td>
+                        <td>17.32</td>
+                        <td>24.57</td>
+                        <td>55.0</td>
+                        <td class="pve-positive">23.00</td>
+                        <td>0.00</td>
+                        <td><strong>24.57</strong></td>
+                    </tr>
+                    <tr>
+                        <td>32</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7701" class="player-link">Andrew Klein</a></td>
+                        <td>1.42</td>
+                        <td>17.32</td>
+                        <td>24.57</td>
+                        <td>55.0</td>
+                        <td class="pve-positive">23.00</td>
+                        <td>0.00</td>
+                        <td><strong>24.57</strong></td>
+                    </tr>
+                    <tr>
+                        <td>33</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8258" class="player-link">Nevan Hagarty</a></td>
+                        <td>1.42</td>
+                        <td>16.37</td>
+                        <td>23.23</td>
+                        <td>12.0</td>
+                        <td class="pve-negative">-21.00</td>
+                        <td>0.00</td>
+                        <td><strong>23.23</strong></td>
+                    </tr>
+                    <tr>
+                        <td>33</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7739" class="player-link">Shawn Hagarty</a></td>
+                        <td>1.42</td>
+                        <td>16.37</td>
+                        <td>23.23</td>
+                        <td>12.0</td>
+                        <td class="pve-negative">-21.00</td>
+                        <td>0.00</td>
+                        <td><strong>23.23</strong></td>
+                    </tr>
+                    <tr>
+                        <td>34</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7786" class="player-link">Brian Ruckdeschel</a></td>
+                        <td>1.42</td>
+                        <td>15.45</td>
+                        <td>21.92</td>
+                        <td>35.0</td>
+                        <td class="pve-positive">1.00</td>
+                        <td>0.00</td>
+                        <td><strong>21.92</strong></td>
+                    </tr>
+                    <tr>
+                        <td>34</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7787" class="player-link">Jim Stanton</a></td>
+                        <td>1.42</td>
+                        <td>15.45</td>
+                        <td>21.92</td>
+                        <td>35.0</td>
+                        <td class="pve-positive">1.00</td>
+                        <td>0.00</td>
+                        <td><strong>21.92</strong></td>
+                    </tr>
+                    <tr>
+                        <td>35</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7614" class="player-link">Ben Harding</a></td>
+                        <td>1.42</td>
+                        <td>14.56</td>
+                        <td>20.65</td>
+                        <td>25.0</td>
+                        <td class="pve-negative">-10.00</td>
+                        <td>0.00</td>
+                        <td><strong>20.65</strong></td>
+                    </tr>
+                    <tr>
+                        <td>35</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7944" class="player-link">Chris Prestero</a></td>
+                        <td>1.42</td>
+                        <td>14.56</td>
+                        <td>20.65</td>
+                        <td>25.0</td>
+                        <td class="pve-negative">-10.00</td>
+                        <td>0.00</td>
+                        <td><strong>20.65</strong></td>
+                    </tr>
+                    <tr>
+                        <td>36</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7466" class="player-link">Matt Brown</a></td>
+                        <td>1.42</td>
+                        <td>13.69</td>
+                        <td>19.42</td>
+                        <td>28.0</td>
+                        <td class="pve-negative">-8.00</td>
+                        <td>0.00</td>
+                        <td><strong>19.42</strong></td>
+                    </tr>
+                    <tr>
+                        <td>36</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7481" class="player-link">Dave Brown</a></td>
+                        <td>1.42</td>
+                        <td>13.69</td>
+                        <td>19.42</td>
+                        <td>28.0</td>
+                        <td class="pve-negative">-8.00</td>
+                        <td>0.00</td>
+                        <td><strong>19.42</strong></td>
+                    </tr>
+                    <tr>
+                        <td>37</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8259" class="player-link">Frank Reimer</a></td>
+                        <td>1.42</td>
+                        <td>12.84</td>
+                        <td>18.22</td>
+                        <td>39.0</td>
+                        <td class="pve-positive">2.00</td>
+                        <td>0.00</td>
+                        <td><strong>18.22</strong></td>
+                    </tr>
+                    <tr>
+                        <td>37</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8260" class="player-link">John Friesen</a></td>
+                        <td>1.42</td>
+                        <td>12.84</td>
+                        <td>18.22</td>
+                        <td>39.0</td>
+                        <td class="pve-positive">2.00</td>
+                        <td>0.00</td>
+                        <td><strong>18.22</strong></td>
+                    </tr>
+                    <tr>
+                        <td>38</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8224" class="player-link">Noel Redmond</a></td>
+                        <td>1.42</td>
+                        <td>12.03</td>
+                        <td>17.06</td>
+                        <td>13.0</td>
+                        <td class="pve-negative">-25.00</td>
+                        <td>0.00</td>
+                        <td><strong>17.06</strong></td>
+                    </tr>
+                    <tr>
+                        <td>38</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7530" class="player-link">Roger Vaillancourt</a></td>
+                        <td>1.42</td>
+                        <td>12.03</td>
+                        <td>17.06</td>
+                        <td>13.0</td>
+                        <td class="pve-negative">-25.00</td>
+                        <td>0.00</td>
+                        <td><strong>17.06</strong></td>
+                    </tr>
+                    <tr>
+                        <td>39</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7958" class="player-link">Katie Van Gammeren</a></td>
+                        <td>1.42</td>
+                        <td>11.24</td>
+                        <td>15.95</td>
+                        <td>56.0</td>
+                        <td class="pve-positive">17.00</td>
+                        <td>0.00</td>
+                        <td><strong>15.95</strong></td>
+                    </tr>
+                    <tr>
+                        <td>39</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7793" class="player-link">Bailey Osborne</a></td>
+                        <td>1.42</td>
+                        <td>11.24</td>
+                        <td>15.95</td>
+                        <td>56.0</td>
+                        <td class="pve-positive">17.00</td>
+                        <td>0.00</td>
+                        <td><strong>15.95</strong></td>
+                    </tr>
+                    <tr>
+                        <td>40</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7688" class="player-link">Len Chard</a></td>
+                        <td>1.42</td>
+                        <td>10.48</td>
+                        <td>14.86</td>
+                        <td>60.0</td>
+                        <td class="pve-positive">20.00</td>
+                        <td>0.00</td>
+                        <td><strong>14.86</strong></td>
+                    </tr>
+                    <tr>
+                        <td>40</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7483" class="player-link">Peter Tarle</a></td>
+                        <td>1.42</td>
+                        <td>10.48</td>
+                        <td>14.86</td>
+                        <td>60.0</td>
+                        <td class="pve-positive">20.00</td>
+                        <td>0.00</td>
+                        <td><strong>14.86</strong></td>
+                    </tr>
+                    <tr>
+                        <td>41</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7529" class="player-link">Dale Henry</a></td>
+                        <td>1.42</td>
+                        <td>9.74</td>
+                        <td>13.82</td>
+                        <td>36.0</td>
+                        <td class="pve-negative">-5.00</td>
+                        <td>0.00</td>
+                        <td><strong>13.82</strong></td>
+                    </tr>
+                    <tr>
+                        <td>41</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7465" class="player-link">Eric Miltenburg</a></td>
+                        <td>1.42</td>
+                        <td>9.74</td>
+                        <td>13.82</td>
+                        <td>36.0</td>
+                        <td class="pve-negative">-5.00</td>
+                        <td>0.00</td>
+                        <td><strong>13.82</strong></td>
+                    </tr>
+                    <tr>
+                        <td>42</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7532" class="player-link">David Younker</a></td>
+                        <td>1.42</td>
+                        <td>9.04</td>
+                        <td>12.82</td>
+                        <td>59.0</td>
+                        <td class="pve-positive">17.00</td>
+                        <td>0.00</td>
+                        <td><strong>12.82</strong></td>
+                    </tr>
+                    <tr>
+                        <td>42</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7531" class="player-link">Daryl MacDonald</a></td>
+                        <td>1.42</td>
+                        <td>9.04</td>
+                        <td>12.82</td>
+                        <td>59.0</td>
+                        <td class="pve-positive">17.00</td>
+                        <td>0.00</td>
+                        <td><strong>12.82</strong></td>
+                    </tr>
+                    <tr>
+                        <td>43</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8239" class="player-link">Candace MacDonald</a></td>
+                        <td>1.42</td>
+                        <td>8.35</td>
+                        <td>11.85</td>
+                        <td>65.0</td>
+                        <td class="pve-positive">22.00</td>
+                        <td>0.00</td>
+                        <td><strong>11.85</strong></td>
+                    </tr>
+                    <tr>
+                        <td>43</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8240" class="player-link">Rob Butler</a></td>
+                        <td>1.42</td>
+                        <td>8.35</td>
+                        <td>11.85</td>
+                        <td>65.0</td>
+                        <td class="pve-positive">22.00</td>
+                        <td>0.00</td>
+                        <td><strong>11.85</strong></td>
+                    </tr>
+                    <tr>
+                        <td>44</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7740" class="player-link">Josh Hartung</a></td>
+                        <td>1.42</td>
+                        <td>7.70</td>
+                        <td>10.92</td>
+                        <td>54.0</td>
+                        <td class="pve-positive">10.00</td>
+                        <td>0.00</td>
+                        <td><strong>10.92</strong></td>
+                    </tr>
+                    <tr>
+                        <td>44</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7815" class="player-link">Joel Hartung</a></td>
+                        <td>1.42</td>
+                        <td>7.70</td>
+                        <td>10.92</td>
+                        <td>54.0</td>
+                        <td class="pve-positive">10.00</td>
+                        <td>0.00</td>
+                        <td><strong>10.92</strong></td>
+                    </tr>
+                    <tr>
+                        <td>45</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7495" class="player-link">Jeff McKeen</a></td>
+                        <td>1.42</td>
+                        <td>7.07</td>
+                        <td>10.03</td>
+                        <td>31.0</td>
+                        <td class="pve-negative">-14.00</td>
+                        <td>0.00</td>
+                        <td><strong>10.03</strong></td>
+                    </tr>
+                    <tr>
+                        <td>45</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8261" class="player-link">Jamie Hayter</a></td>
+                        <td>1.42</td>
+                        <td>7.07</td>
+                        <td>10.03</td>
+                        <td>31.0</td>
+                        <td class="pve-negative">-14.00</td>
+                        <td>0.00</td>
+                        <td><strong>10.03</strong></td>
+                    </tr>
+                    <tr>
+                        <td>46</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7832" class="player-link">Andrew Lounsbury</a></td>
+                        <td>1.42</td>
+                        <td>6.47</td>
+                        <td>9.18</td>
+                        <td>57.0</td>
+                        <td class="pve-positive">11.00</td>
+                        <td>0.00</td>
+                        <td><strong>9.18</strong></td>
+                    </tr>
+                    <tr>
+                        <td>46</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7833" class="player-link">Robert Lounsbury</a></td>
+                        <td>1.42</td>
+                        <td>6.47</td>
+                        <td>9.18</td>
+                        <td>57.0</td>
+                        <td class="pve-positive">11.00</td>
+                        <td>0.00</td>
+                        <td><strong>9.18</strong></td>
+                    </tr>
+                    <tr>
+                        <td>47</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7534" class="player-link">Beverly Vaillancourt</a></td>
+                        <td>1.42</td>
+                        <td>5.89</td>
+                        <td>8.36</td>
+                        <td>52.0</td>
+                        <td class="pve-positive">5.00</td>
+                        <td>0.00</td>
+                        <td><strong>8.36</strong></td>
+                    </tr>
+                    <tr>
+                        <td>47</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7482" class="player-link">Cathy Kuepfer</a></td>
+                        <td>1.42</td>
+                        <td>5.89</td>
+                        <td>8.36</td>
+                        <td>52.0</td>
+                        <td class="pve-positive">5.00</td>
+                        <td>0.00</td>
+                        <td><strong>8.36</strong></td>
+                    </tr>
+                    <tr>
+                        <td>48</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8262" class="player-link">Andrew Whitfield</a></td>
+                        <td>1.42</td>
+                        <td>5.35</td>
+                        <td>7.58</td>
+                        <td>58.0</td>
+                        <td class="pve-positive">10.00</td>
+                        <td>0.00</td>
+                        <td><strong>7.58</strong></td>
+                    </tr>
+                    <tr>
+                        <td>48</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8263" class="player-link">James Nicholson</a></td>
+                        <td>1.42</td>
+                        <td>5.35</td>
+                        <td>7.58</td>
+                        <td>58.0</td>
+                        <td class="pve-positive">10.00</td>
+                        <td>0.00</td>
+                        <td><strong>7.58</strong></td>
+                    </tr>
+                    <tr>
+                        <td>49</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8264" class="player-link">Tina Lettner</a></td>
+                        <td>1.42</td>
+                        <td>4.83</td>
+                        <td>6.84</td>
+                        <td>40.0</td>
+                        <td class="pve-negative">-9.00</td>
+                        <td>0.00</td>
+                        <td><strong>6.84</strong></td>
+                    </tr>
+                    <tr>
+                        <td>49</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8225" class="player-link">Unknown Unknown</a></td>
+                        <td>1.42</td>
+                        <td>4.83</td>
+                        <td>6.84</td>
+                        <td>40.0</td>
+                        <td class="pve-negative">-9.00</td>
+                        <td>0.00</td>
+                        <td><strong>6.84</strong></td>
+                    </tr>
+                    <tr>
+                        <td>50</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7743" class="player-link">Clayton Brick</a></td>
+                        <td>1.42</td>
+                        <td>4.33</td>
+                        <td>6.14</td>
+                        <td>61.0</td>
+                        <td class="pve-positive">11.00</td>
+                        <td>0.00</td>
+                        <td><strong>6.14</strong></td>
+                    </tr>
+                    <tr>
+                        <td>50</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7741" class="player-link">Anthony Brick</a></td>
+                        <td>1.42</td>
+                        <td>4.33</td>
+                        <td>6.14</td>
+                        <td>61.0</td>
+                        <td class="pve-positive">11.00</td>
+                        <td>0.00</td>
+                        <td><strong>6.14</strong></td>
+                    </tr>
+                    <tr>
+                        <td>51</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8265" class="player-link">Evan Marston</a></td>
+                        <td>1.42</td>
+                        <td>3.86</td>
+                        <td>5.48</td>
+                        <td>63.0</td>
+                        <td class="pve-positive">12.00</td>
+                        <td>0.00</td>
+                        <td><strong>5.48</strong></td>
+                    </tr>
+                    <tr>
+                        <td>51</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7704" class="player-link">Simon Etwell</a></td>
+                        <td>1.42</td>
+                        <td>3.86</td>
+                        <td>5.48</td>
+                        <td>63.0</td>
+                        <td class="pve-positive">12.00</td>
+                        <td>0.00</td>
+                        <td><strong>5.48</strong></td>
+                    </tr>
+                    <tr>
+                        <td>52</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8190" class="player-link">Dan Smith</a></td>
+                        <td>1.42</td>
+                        <td>3.42</td>
+                        <td>4.85</td>
+                        <td>32.0</td>
+                        <td class="pve-negative">-20.00</td>
+                        <td>0.00</td>
+                        <td><strong>4.85</strong></td>
+                    </tr>
+                    <tr>
+                        <td>52</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8266" class="player-link">Bill Hagan</a></td>
+                        <td>1.42</td>
+                        <td>3.42</td>
+                        <td>4.85</td>
+                        <td>32.0</td>
+                        <td class="pve-negative">-20.00</td>
+                        <td>0.00</td>
+                        <td><strong>4.85</strong></td>
+                    </tr>
+                    <tr>
+                        <td>53</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8267" class="player-link">James Como</a></td>
+                        <td>1.42</td>
+                        <td>3.01</td>
+                        <td>4.27</td>
+                        <td>41.0</td>
+                        <td class="pve-negative">-12.00</td>
+                        <td>0.00</td>
+                        <td><strong>4.27</strong></td>
+                    </tr>
+                    <tr>
+                        <td>53</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8268" class="player-link">Shane Gagnon</a></td>
+                        <td>1.42</td>
+                        <td>3.01</td>
+                        <td>4.27</td>
+                        <td>41.0</td>
+                        <td class="pve-negative">-12.00</td>
+                        <td>0.00</td>
+                        <td><strong>4.27</strong></td>
+                    </tr>
+                    <tr>
+                        <td>54</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7844" class="player-link">John Scott</a></td>
+                        <td>1.42</td>
+                        <td>2.62</td>
+                        <td>3.72</td>
+                        <td>42.0</td>
+                        <td class="pve-negative">-12.00</td>
+                        <td>0.00</td>
+                        <td><strong>3.72</strong></td>
+                    </tr>
+                    <tr>
+                        <td>54</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8269" class="player-link">Kathy Mayo</a></td>
+                        <td>1.42</td>
+                        <td>2.62</td>
+                        <td>3.72</td>
+                        <td>42.0</td>
+                        <td class="pve-negative">-12.00</td>
+                        <td>0.00</td>
+                        <td><strong>3.72</strong></td>
+                    </tr>
+                    <tr>
+                        <td>55</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7707" class="player-link">Jason Fitz-Gerald</a></td>
+                        <td>1.42</td>
+                        <td>2.26</td>
+                        <td>3.20</td>
+                        <td>64.0</td>
+                        <td class="pve-positive">9.00</td>
+                        <td>0.00</td>
+                        <td><strong>3.20</strong></td>
+                    </tr>
+                    <tr>
+                        <td>55</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7744" class="player-link">Daniel Fitz-Gerald</a></td>
+                        <td>1.42</td>
+                        <td>2.26</td>
+                        <td>3.20</td>
+                        <td>64.0</td>
+                        <td class="pve-positive">9.00</td>
+                        <td>0.00</td>
+                        <td><strong>3.20</strong></td>
+                    </tr>
+                    <tr>
+                        <td>56</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7545" class="player-link">Liam Walmsley</a></td>
+                        <td>1.42</td>
+                        <td>1.92</td>
+                        <td>2.73</td>
+                        <td>43.0</td>
+                        <td class="pve-negative">-13.00</td>
+                        <td>0.00</td>
+                        <td><strong>2.73</strong></td>
+                    </tr>
+                    <tr>
+                        <td>56</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7546" class="player-link">Shane Marston</a></td>
+                        <td>1.42</td>
+                        <td>1.92</td>
+                        <td>2.73</td>
+                        <td>43.0</td>
+                        <td class="pve-negative">-13.00</td>
+                        <td>0.00</td>
+                        <td><strong>2.73</strong></td>
+                    </tr>
+                    <tr>
+                        <td>57</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8245" class="player-link">Randall Coryell</a></td>
+                        <td>1.42</td>
+                        <td>1.62</td>
+                        <td>2.29</td>
+                        <td>44.0</td>
+                        <td class="pve-negative">-13.00</td>
+                        <td>0.00</td>
+                        <td><strong>2.29</strong></td>
+                    </tr>
+                    <tr>
+                        <td>57</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8244" class="player-link">Gwen Swick</a></td>
+                        <td>1.42</td>
+                        <td>1.62</td>
+                        <td>2.29</td>
+                        <td>44.0</td>
+                        <td class="pve-negative">-13.00</td>
+                        <td>0.00</td>
+                        <td><strong>2.29</strong></td>
+                    </tr>
+                    <tr>
+                        <td>58</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8270" class="player-link">Monika Aggarwal</a></td>
+                        <td>1.42</td>
+                        <td>1.34</td>
+                        <td>1.90</td>
+                        <td>45.0</td>
+                        <td class="pve-negative">-13.00</td>
+                        <td>0.00</td>
+                        <td><strong>1.90</strong></td>
+                    </tr>
+                    <tr>
+                        <td>58</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8172" class="player-link">Lauren Herrmann</a></td>
+                        <td>1.42</td>
+                        <td>1.34</td>
+                        <td>1.90</td>
+                        <td>45.0</td>
+                        <td class="pve-negative">-13.00</td>
+                        <td>0.00</td>
+                        <td><strong>1.90</strong></td>
+                    </tr>
+                    <tr>
+                        <td>59</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7745" class="player-link">Lucas Fitz-Gerald</a></td>
+                        <td>1.42</td>
+                        <td>1.08</td>
+                        <td>1.54</td>
+                        <td>67.0</td>
+                        <td class="pve-positive">8.00</td>
+                        <td>0.00</td>
+                        <td><strong>1.54</strong></td>
+                    </tr>
+                    <tr>
+                        <td>59</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8271" class="player-link">Yair Fitz-Gerald</a></td>
+                        <td>1.42</td>
+                        <td>1.08</td>
+                        <td>1.54</td>
+                        <td>67.0</td>
+                        <td class="pve-positive">8.00</td>
+                        <td>0.00</td>
+                        <td><strong>1.54</strong></td>
+                    </tr>
+                    <tr>
+                        <td>60</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7553" class="player-link">Anthony Anemi</a></td>
+                        <td>1.42</td>
+                        <td>0.86</td>
+                        <td>1.21</td>
+                        <td>62.0</td>
+                        <td class="pve-positive">2.00</td>
+                        <td>0.00</td>
+                        <td><strong>1.21</strong></td>
+                    </tr>
+                    <tr>
+                        <td>60</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7843" class="player-link">Riley Sean Brown</a></td>
+                        <td>1.42</td>
+                        <td>0.86</td>
+                        <td>1.21</td>
+                        <td>62.0</td>
+                        <td class="pve-positive">2.00</td>
+                        <td>0.00</td>
+                        <td><strong>1.21</strong></td>
+                    </tr>
+                    <tr>
+                        <td>61</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7548" class="player-link">Vincent Sandir</a></td>
+                        <td>1.42</td>
+                        <td>0.65</td>
+                        <td>0.93</td>
+                        <td>66.0</td>
+                        <td class="pve-positive">5.00</td>
+                        <td>0.00</td>
+                        <td><strong>0.93</strong></td>
+                    </tr>
+                    <tr>
+                        <td>61</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8272" class="player-link">Tristan MacLean</a></td>
+                        <td>1.42</td>
+                        <td>0.65</td>
+                        <td>0.93</td>
+                        <td>66.0</td>
+                        <td class="pve-positive">5.00</td>
+                        <td>0.00</td>
+                        <td><strong>0.93</strong></td>
+                    </tr>
+                    <tr>
+                        <td>62</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8274" class="player-link">William Skipper</a></td>
+                        <td>1.42</td>
+                        <td>0.48</td>
+                        <td>0.68</td>
+                        <td>53.0</td>
+                        <td class="pve-negative">-9.00</td>
+                        <td>0.00</td>
+                        <td><strong>0.68</strong></td>
+                    </tr>
+                    <tr>
+                        <td>62</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8273" class="player-link">Charles Skipper</a></td>
+                        <td>1.42</td>
+                        <td>0.48</td>
+                        <td>0.68</td>
+                        <td>53.0</td>
+                        <td class="pve-negative">-9.00</td>
+                        <td>0.00</td>
+                        <td><strong>0.68</strong></td>
+                    </tr>
+                    <tr>
+                        <td>63</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8034" class="player-link">Alf Evan Lee</a></td>
+                        <td>1.42</td>
+                        <td>0.33</td>
+                        <td>0.47</td>
+                        <td>68.0</td>
+                        <td class="pve-positive">5.00</td>
+                        <td>0.00</td>
+                        <td><strong>0.47</strong></td>
+                    </tr>
+                    <tr>
+                        <td>63</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8275" class="player-link">Bill Isen</a></td>
+                        <td>1.42</td>
+                        <td>0.33</td>
+                        <td>0.47</td>
+                        <td>68.0</td>
+                        <td class="pve-positive">5.00</td>
+                        <td>0.00</td>
+                        <td><strong>0.47</strong></td>
+                    </tr>
+                    <tr>
+                        <td>64</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8276" class="player-link">Al Koop</a></td>
+                        <td>1.42</td>
+                        <td>0.21</td>
+                        <td>0.30</td>
+                        <td>46.0</td>
+                        <td class="pve-negative">-18.00</td>
+                        <td>0.00</td>
+                        <td><strong>0.30</strong></td>
+                    </tr>
+                    <tr>
+                        <td>64</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8277" class="player-link">Sheila Koop</a></td>
+                        <td>1.42</td>
+                        <td>0.21</td>
+                        <td>0.30</td>
+                        <td>46.0</td>
+                        <td class="pve-negative">-18.00</td>
+                        <td>0.00</td>
+                        <td><strong>0.30</strong></td>
+                    </tr>
+                    <tr>
+                        <td>65</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7831" class="player-link">Susie Fowler</a></td>
+                        <td>1.42</td>
+                        <td>0.12</td>
+                        <td>0.17</td>
+                        <td>47.0</td>
+                        <td class="pve-negative">-18.00</td>
+                        <td>0.00</td>
+                        <td><strong>0.17</strong></td>
+                    </tr>
+                    <tr>
+                        <td>65</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7830" class="player-link">Andy Macpherson</a></td>
+                        <td>1.42</td>
+                        <td>0.12</td>
+                        <td>0.17</td>
+                        <td>47.0</td>
+                        <td class="pve-negative">-18.00</td>
+                        <td>0.00</td>
+                        <td><strong>0.17</strong></td>
+                    </tr>
+                    <tr>
+                        <td>66</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8279" class="player-link">Henry Skipper</a></td>
+                        <td>1.42</td>
+                        <td>0.05</td>
+                        <td>0.08</td>
+                        <td>48.0</td>
+                        <td class="pve-negative">-18.00</td>
+                        <td>0.00</td>
+                        <td><strong>0.08</strong></td>
+                    </tr>
+                    <tr>
+                        <td>66</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8278" class="player-link">Carlos Huarcaya</a></td>
+                        <td>1.42</td>
+                        <td>0.05</td>
+                        <td>0.08</td>
+                        <td>48.0</td>
+                        <td class="pve-negative">-18.00</td>
+                        <td>0.00</td>
+                        <td><strong>0.08</strong></td>
+                    </tr>
+                    <tr>
+                        <td>67</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7852" class="player-link">Kiefer Buhot</a></td>
+                        <td>1.42</td>
+                        <td>0.01</td>
+                        <td>0.02</td>
+                        <td>49.0</td>
+                        <td class="pve-negative">-18.00</td>
+                        <td>0.00</td>
+                        <td><strong>0.02</strong></td>
+                    </tr>
+                    <tr>
+                        <td>67</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7555" class="player-link">Drake Lees</a></td>
+                        <td>1.42</td>
+                        <td>0.01</td>
+                        <td>0.02</td>
+                        <td>49.0</td>
+                        <td class="pve-negative">-18.00</td>
+                        <td>0.00</td>
+                        <td><strong>0.02</strong></td>
+                    </tr>
+                    <tr>
+                        <td>68</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=7838" class="player-link">Brandon Desousa</a></td>
+                        <td>1.42</td>
+                        <td>0.00</td>
+                        <td>0.00</td>
+                        <td>50.0</td>
+                        <td class="pve-negative">-18.00</td>
+                        <td>0.00</td>
+                        <td><strong>0.00</strong></td>
+                    </tr>
+                    <tr>
+                        <td>68</td>
+                        <td style="text-align: left;"><a href="../player_profile.html?id=8280" class="player-link">John Wayne Allan</a></td>
+                        <td>1.42</td>
+                        <td>0.00</td>
+                        <td>0.00</td>
+                        <td>50.0</td>
+                        <td class="pve-negative">-18.00</td>
+                        <td>0.00</td>
+                        <td><strong>0.00</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="chart-container">
+            <h2 style="margin-bottom: 16px;">Points by Place</h2>
+            <canvas id="pointsChart" width="800" height="400"></canvas>
+        </div>
+    </div>
+    
+    <script>
+        // Draw Points by Place chart
+        const canvas = document.getElementById('pointsChart');
+        const ctx = canvas.getContext('2d');
+        
+        // Data
+        const places = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 16, 16, 17, 17, 18, 18, 19, 19, 20, 20, 21, 21, 22, 22, 23, 23, 24, 24, 25, 25, 26, 26, 27, 27, 28, 28, 29, 29, 30, 30, 31, 31, 32, 32, 33, 33, 34, 34, 35, 35, 36, 36, 37, 37, 38, 38, 39, 39, 40, 40, 41, 41, 42, 42, 43, 43, 44, 44, 45, 45, 46, 46, 47, 47, 48, 48, 49, 49, 50, 50, 51, 51, 52, 52, 53, 53, 54, 54, 55, 55, 56, 56, 57, 57, 58, 58, 59, 59, 60, 60, 61, 61, 62, 62, 63, 63, 64, 64, 65, 65, 66, 66, 67, 67, 68, 68];
+        const totalPoints = [85.11321796585695, 85.11321796585695, 82.59148528832097, 82.59148528832097, 80.10767340292841, 80.10767340292841, 77.66178230967923, 77.66178230967923, 75.25381200857345, 75.25381200857345, 72.88376249961108, 72.88376249961108, 70.5516337827921, 70.5516337827921, 68.25742585811652, 68.25742585811652, 66.00113872558433, 66.00113872558433, 63.78277238519554, 63.78277238519554, 61.602326836950155, 61.602326836950155, 59.459802080848156, 59.459802080848156, 57.355198116889575, 57.355198116889575, 55.28851494507438, 55.28851494507438, 53.259752565402586, 53.259752565402586, 51.26891097787418, 51.26891097787418, 49.31599018248918, 49.31599018248918, 47.40099017924757, 47.40099017924757, 45.52391096814938, 45.52391096814938, 43.68475254919458, 43.68475254919458, 41.883514922383156, 41.883514922383156, 40.120198087715146, 40.120198087715146, 38.394802045190524, 38.394802045190524, 36.707326794809326, 36.707326794809326, 35.05777233657152, 35.05777233657152, 33.44613867047709, 33.44613867047709, 31.87242579652607, 31.87242579652607, 30.336633714718445, 30.336633714718445, 28.838762425054227, 28.838762425054227, 27.37881192753341, 27.37881192753341, 25.95678222215598, 25.95678222215598, 24.572673308921946, 24.572673308921946, 23.22648518783131, 23.22648518783131, 21.91821785888408, 21.91821785888408, 20.647871322080242, 20.647871322080242, 19.41544557741981, 19.41544557741981, 18.22094062490277, 18.22094062490277, 17.064356464529123, 17.064356464529123, 15.945693096298886, 15.945693096298886, 14.864950520212039, 14.864950520212039, 13.822128736268596, 13.822128736268596, 12.817227744468545, 12.817227744468545, 11.850247544811893, 11.850247544811893, 10.921188137298644, 10.921188137298644, 10.030049521928786, 10.030049521928786, 9.176831698702328, 9.176831698702328, 8.361534667619273, 8.361534667619273, 7.584158428679611, 7.584158428679611, 6.844702981883352, 6.844702981883352, 6.1431683272304864, 6.1431683272304864, 5.4795544647210175, 5.4795544647210175, 4.8538613943549525, 4.8538613943549525, 4.266089116132281, 4.266089116132281, 3.716237630053012, 3.716237630053012, 3.204306936117136, 3.204306936117136, 2.730297034324659, 2.730297034324659, 2.2942079246755838, 2.2942079246755838, 1.8960396071699028, 1.8960396071699028, 1.5357920818076225, 1.5357920818076225, 1.2134653485887381, 1.2134653485887381, 0.929059407513252, 0.929059407513252, 0.6825742585811657, 0.6825742585811657, 0.4740099017924757, 0.4740099017924757, 0.303366337147184, 0.303366337147184, 0.17064356464529143, 0.17064356464529143, 0.075841584286796, 0.075841584286796, 0.01896039607169914, 0.01896039607169914, 0.0, 0.0];
+        
+        // Chart dimensions
+        const padding = 50;
+        const chartWidth = canvas.width - 2 * padding;
+        const chartHeight = canvas.height - 2 * padding;
+        
+        // Find min/max
+        const maxPoints = Math.max(...totalPoints);
+        const minPoints = 0;
+        const pointsRange = maxPoints - minPoints;
+        
+        // Draw axes
+        ctx.strokeStyle = '#e0e0e0';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(padding, padding);
+        ctx.lineTo(padding, canvas.height - padding);
+        ctx.lineTo(canvas.width - padding, canvas.height - padding);
+        ctx.stroke();
+        
+        // Draw grid lines
+        ctx.strokeStyle = '#f0f0f0';
+        ctx.lineWidth = 0.5;
+        for (let i = 0; i <= 5; i++) {
+            const y = padding + (chartHeight / 5) * i;
+            ctx.beginPath();
+            ctx.moveTo(padding, y);
+            ctx.lineTo(canvas.width - padding, y);
+            ctx.stroke();
+        }
+        
+        // Draw line
+        ctx.strokeStyle = '#4a90e2';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        for (let i = 0; i < places.length; i++) {
+            const x = padding + (chartWidth / (places.length - 1)) * i;
+            const y = canvas.height - padding - ((totalPoints[i] - minPoints) / pointsRange) * chartHeight;
+            
+            if (i === 0) {
+                ctx.moveTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
+            }
+        }
+        ctx.stroke();
+        
+        // Draw points
+        ctx.fillStyle = '#4a90e2';
+        for (let i = 0; i < places.length; i++) {
+            const x = padding + (chartWidth / (places.length - 1)) * i;
+            const y = canvas.height - padding - ((totalPoints[i] - minPoints) / pointsRange) * chartHeight;
+            
+            ctx.beginPath();
+            ctx.arc(x, y, 4, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+        
+        // Draw labels
+        ctx.fillStyle = '#666';
+        ctx.font = '11px sans-serif';
+        ctx.textAlign = 'right';
+        
+        // Y-axis labels
+        for (let i = 0; i <= 5; i++) {
+            const value = maxPoints - (pointsRange / 5) * i;
+            const y = padding + (chartHeight / 5) * i;
+            ctx.fillText(value.toFixed(1), padding - 10, y + 4);
+        }
+        
+        // X-axis labels (every 5th place or first/last)
+        ctx.textAlign = 'center';
+        for (let i = 0; i < places.length; i++) {
+            if (i === 0 || i === places.length - 1 || i % 5 === 0) {
+                const x = padding + (chartWidth / (places.length - 1)) * i;
+                ctx.fillText(`${places[i]}`, x, canvas.height - padding + 20);
+            }
+        }
+        
+        // Axis labels
+        ctx.font = '12px sans-serif';
+        ctx.fillStyle = '#1a1a1a';
+        ctx.textAlign = 'center';
+        ctx.fillText('Place', canvas.width / 2, canvas.height - 10);
+        
+        ctx.save();
+        ctx.translate(15, canvas.height / 2);
+        ctx.rotate(-Math.PI / 2);
+        ctx.fillText('Total Points', 0, 0);
+        ctx.restore();
+    </script>
+</body>
+</html>
